@@ -25,21 +25,20 @@ Constraints:
 1<= n <=105
 */
 
-class Solution {
-    public static int evenlyDivides(int n) {
-        int count = 0;
-        int original = n;
+class Solution{
+    public static int evenlyDivides(int n){
+        int duplicate = n;
+        int count=0;
         
-        while (n > 0) {
-            int digit = n % 10;
-            n = n / 10;
-            
-            // Avoid division by zero
-            if (digit != 0 && original % digit == 0) {
-                count++;
+        while (n>0) {
+            int lastDigit = n%10;
+            n=n/10;
+
+            //Avoid ZeroDivision Error
+            if(lastDigit !=0 && duplicate % lastDigit == 0){
+            count++;
             }
         }
-        
         return count;
     }
 }
