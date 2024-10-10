@@ -29,7 +29,7 @@ class HelloWorld {
 class HelloWorld {
     static int count = 0;
     public static void hi(){
-        if(count == 3) return;
+        if(count == 3) return;    //base condition to stop the recursion
         else{
         System.out.println(count);
         count++;
