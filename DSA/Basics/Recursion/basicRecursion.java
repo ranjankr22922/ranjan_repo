@@ -8,5 +8,4 @@ class HelloWorld {
         hi();
     }
 }
-
-// Out of memory error
+//Segmentation Error - Stack Overflow(out of memory)
