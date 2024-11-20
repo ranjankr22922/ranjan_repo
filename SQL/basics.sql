@@ -95,6 +95,7 @@ DELETE FROM employee;    -- TRUNCATE FROM employee;  (ROLLBACK is possible in DE
 
 --ALTER ADD(columns)
 ALTER TABLE student ADD stream VARCHAR(50);    --Added 'stream' column
+ALTER TABLE student ADD address NUMBER;
 --ALTER TABLE student ADD job VARCHAR(50), salary VARCHAR(20);
 --ALTER TABLE student ADD PRIMARY KEY(stu_id);
 ALTER TABLE student ADD gender CHAR(1) DEFAULT 'F';  --Added 'gender' with 'F' in every data.
@@ -137,3 +138,34 @@ SELECT ENAME FROM employee WHERE ENAME NOT LIKE '%O%';  --NOT LIKE
 
 ------------------------------------------------------------------------------------------------------------
 
+--DESCRIBE (DESC)
+PRAGMA table_info(STUDENT);
+
+--CREATE
+CREATE TABLE emp AS SELECT * FROM employee;
+CREATE TABLE emp1 AS SELECT * FROM emp WHERE 1=2;  --Create table from another table without copying data of old table(only structure).
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+--AND
+SELECT * FROM emp WHERE job = "MANAGER" AND sal >= 2500;
+SELECT * FROM emp WHERE job = "MANAGER" AND job = "ANALYST";  --Noone can have 2 jobs.
+
+--OR
+SELECT * FROM emp WHERE job = "MANAGER" OR job = "ANALYST";
+
+SELECT * FROM emp WHERE (sal>1500 OR job = "MANAGER") AND (DEPTNO=10 OR DEPTNO=30)
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+SELECT JOB FROM EMP;
+--DISTINCT
+SELECT DISTINCT JOB FROM EMP;
+SELECT DISTINCT JOB, SAL FROM EMP;
+SELECT DISTINCT STREAM FROM Student;  --Considers NULL to be UNIQUE values.
+
+SELECT JOB, COUNT(*) FROM EMP GROUP BY JOB HAVING COUNT(*)>1;  --Without using DISTINCT keyword.
+
+SELECT JOB, COUNT(*) FROM EMP GROUP BY JOB HAVING COUNT(*)=1;  --UNIQUE
+
+------------------------------------------------------------------------------------------------------------------------------------------
