@@ -198,3 +198,44 @@ SELECT MAX(SAL) FROM EMP
 WHERE SAL NOT IN(SELECT MAX(SAL) FROM EMP);  --Select 2nd Highest Salary
 
 ------------------------------------------------------------------------------------------------------------------------------------------
+
+--Aggregate Functions
+
+CREATE TABLE Student (
+    Name VARCHAR(10),
+    Subject VARCHAR(10),
+    Marks INT
+);
+
+INSERT INTO Student (Name, Subject, Marks) VALUES ('ABC', 'DBMS', 80);
+INSERT INTO Student (Name, Subject, Marks) VALUES ('ABC', 'OS', 70);
+INSERT INTO Student (Name, Subject, Marks) VALUES ('PQR', 'OS', 80);
+INSERT INTO Student (Name, Subject, Marks) VALUES ('PQR', 'DBMS', 70);
+INSERT INTO Student (Name, Subject, Marks) VALUES ('XYZ', 'DBMS', NULL);
+INSERT INTO Student (Name, Subject, Marks) VALUES ('BCD', 'OS', 100);
+INSERT INTO Student (Name, Subject, Marks) VALUES ('BCD', 'DBMS', 90);
+
+SELECT MAX(MARKS) FROM STUDENT;  --MAX
+SELECT MIN(MARKS) FROM STUDENT;  --MIN
+SELECT SUM(MARKS) FROM STUDENT;  --SUM
+SELECT AVG(MARKS) FROM STUDENT;  --AVG
+SELECT COUNT(MARKS) FROM STUDENT;  --COUNT
+SELECT COUNT(*) FROM STUDENT;  --COUNT including NULL
+
+-- GROUP BY
+SELECT SUBJECT, MAX(MARKS)
+FROM STUDENT
+GROUP BY SUBJECT
+
+SELECT DEPTNO,COUNT(*) FROM EMPLOYEE
+GROUP BY DEPTNO
+
+SELECT DEPTNO,MAX(SAL),MIN(SAL) FROM EMPLOYEE
+GROUP BY DEPTNO
+
+  
+-- GROUP BY AND HAVING
+SELECT NAME, SUM(MARKS)
+FROM STUDENT
+GROUP BY NAME
+HAVING SUM(MARKS)>150;
