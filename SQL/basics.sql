@@ -85,6 +85,24 @@ SET BRANCH = "SUCCESS"
 WHERE SCORE > 95;
 
 ---------------------------------------------------------------------------------------
+CREATE TABLE employee (
+    EMPNO INT PRIMARY KEY,
+    ENAME VARCHAR(50),
+    JOB VARCHAR(50),
+    MGR INT,
+    HIREDATE VARCHAR(20),
+    SAL DECIMAL(10, 2),
+    COMM DECIMAL(10, 2),
+    DEPTNO INT
+);
+INSERT INTO employee (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO) VALUES
+(7839, 'KING', 'PRESIDENT', NULL, '17-NOV-81', 5000, NULL, 10),
+(7698, 'BLAKE', 'MANAGER', 7839, '01-MAY-81', 2850, NULL, 30),
+(7782, 'CLARK', 'MANAGER', 7839, '09-JUN-81', 2450, NULL, 10),
+(7566, 'JONES', 'MANAGER', 7839, '02-APR-81', 2975, NULL, 20),
+(7788, 'SCOTT', 'ANALYST', 7566, '19-APR-87', 3000, NULL, 20),
+(7902, 'FORD', 'ANALYST', 7566, '03-DEC-81', 3000, NULL, 20),
+(7369, 'SMITH', 'CLERK', 7902, '17-DEC-80', 800, NULL, 20);
 
 --DELETE (rows)
 DELETE FROM student WHERE stu_name = "CHANDAN KUMAR";
@@ -167,5 +185,16 @@ SELECT DISTINCT STREAM FROM Student;  --Considers NULL to be UNIQUE values.
 SELECT JOB, COUNT(*) FROM EMP GROUP BY JOB HAVING COUNT(*)>1;  --Without using DISTINCT keyword.
 
 SELECT JOB, COUNT(*) FROM EMP GROUP BY JOB HAVING COUNT(*)=1;  --UNIQUE
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+--IN
+SELECT * FROM employee WHERE ename IN ('BLAKE', 'CLARK', 'SCOTT');
+SELECT * FROM employee WHERE ename IN ('BLAKE', 'CLARK', 'SCOTTY');  --Doesn't provide data for SCOTTY
+SELECT * FROM employee WHERE ename NOT IN ('BLAKE', 'CLARK', 'SCOTT');
+DELETE FROM employee WHERE ENAME IN ('KING', 'JONES');
+
+SELECT MAX(SAL) FROM EMP 
+WHERE SAL NOT IN(SELECT MAX(SAL) FROM EMP);  --Select 2nd Highest Salary
 
 ------------------------------------------------------------------------------------------------------------------------------------------
